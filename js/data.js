@@ -42,13 +42,17 @@ const createComments = () => {
   };
 };
 
+const numberOfComments = 3;
+
+
 const createPhotoDescription = () => {
   return {
     id: id++,
     url: `photos/${id}.jpg`,
     description: description[getRandomtInclusive(0,description.length-1)],
     likes: getRandomtInclusive(15,200),
-    comments: Array.from({length: 3}, createComments),
+    comments: Array.from({length: numberOfComments}, createComments),
+
   };
 };
 
