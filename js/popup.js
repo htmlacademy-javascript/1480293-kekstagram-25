@@ -1,10 +1,6 @@
 import {PhotoDescription} from './data.js';
 
-console.log(
-  PhotoDescription ()
-);
-
-const usersPictures = document.querySelector('.pictures ');
+const usersPictures = document.querySelector('.pictures');
 
 const similarPictureTemplate = document.querySelector('#picture')
   .content
@@ -16,7 +12,6 @@ const similarListFragment = document.createDocumentFragment();
 
 
 similarPictures.forEach(({url, likes, comments}) => {
-
 
   const pictureElement = similarPictureTemplate.cloneNode(true);
   pictureElement.querySelector('.picture__img').src = url;
