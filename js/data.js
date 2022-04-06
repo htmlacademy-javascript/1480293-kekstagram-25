@@ -41,7 +41,9 @@ const createComments = () => {
     name: name[getRandomtInclusive(0,name.length-1)],
   };
 };
+
 const numberOfComments = 3;
+
 
 const createPhotoDescription = () => {
   return {
@@ -50,6 +52,7 @@ const createPhotoDescription = () => {
     description: description[getRandomtInclusive(0,description.length-1)],
     likes: getRandomtInclusive(15,200),
     comments: Array.from({length: numberOfComments}, createComments),
+
   };
 };
 
