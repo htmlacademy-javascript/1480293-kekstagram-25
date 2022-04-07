@@ -42,12 +42,12 @@ const createComments = () => {
   };
 };
 
-const numberOfComments = 3;
+const numberOfComments = 7;
 
 
 const createPhotoDescription = () => {
   return {
-    id: id++,
+    id: id+1,
     url: `photos/${id}.jpg`,
     description: description[getRandomtInclusive(0,description.length-1)],
     likes: getRandomtInclusive(15,200),
@@ -56,6 +56,7 @@ const createPhotoDescription = () => {
   };
 };
 
-const PhotoDescription = () => Array.from({length: 25}, createPhotoDescription);
+const photoDescription = () => Array.from({length: 20}, createPhotoDescription);
 
-export {PhotoDescription};
+const photos = photoDescription();
+export {photos};

@@ -1,36 +1,17 @@
+import {photos} from './data.js';
+
 const fullPictures = document.querySelector('.big-picture');
 fullPictures.classList.remove('hidden');
 
-const similarListFragment = document.createDocumentFragment();
-
-const closePopupButton = document.querySelector('big-picture__cancel');
-
-const socialComment = document.querySelector('social__comment');
-
-// Вариант 1
-
-similarfullPictures.forEach(({url, likes, comments, socialComment, description}) => {
-
-  const fullPictureElement = similarPictureTemplate.cloneNode(true);
-  fullPictureElement.querySelector('.big-picture__img').src = url;
-  fullPictureElement.querySelector('.likes-count').textContent = likes;
-  fullPictureElement.querySelector('.comments-count').textContent = comments.length;
-  fullPictureElement.querySelector('.social__comments') = socialComment.forEach(({avatar, name, alt}) => {
-    const socialCommentsElement = socialCommentTemplate.cloneNode(true);
-    socialCommentsElement.querySelector('.social__picture').alt = avatar;
-    socialCommentsElement.querySelector('.social__picture').src = name;
-    socialCommentsElement.querySelector('.social__text').textContent = alt;
-  });
-  fullPictureElement.querySelector('.social__caption').textContent = description;
+const closePopupButton = document.querySelector('.big-picture__cancel');
 
 
-  similarListFragment.appendChild(fullPictureElement);
-});
-
-fullPictures.appendChild(similarListFragment);
-
-
-
+fullPictures.querySelector('.big-picture__img img').src = photos[1].url;
+fullPictures.querySelector('.likes-count').textContent = photos[1].likes;
+fullPictures.querySelector('.comments-count').textContent = photos[1].comments.length; /*Hidden прибаляет в консоль почему-то*/
+fullPictures.querySelector('.social__picture').alt = photos[1].comments[2].name;
+fullPictures.querySelector('.social__picture').src = photos[1].comments[2].avatar; /*Не понятно*/
+fullPictures.querySelector('.social__caption').textContent = photos[1].comments[2].message;
 
 document.querySelector('.social__comment-count').classList.add('hidden');
 document.querySelector('.comments-loader').classList.add('hidden');
@@ -45,9 +26,6 @@ document.addEventListener('keydown', function (evt) {
 });
 
 closePopupButton.addEventListener('click', function () {
-  popup.classList.remove('modal--show');
+  fullPictures.classList.add('hidden');
   document.querySelector('body').classList.remove('modal-open');
 });
-
-
-usersPictures.appendChild(similarListFragment);

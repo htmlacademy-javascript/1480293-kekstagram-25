@@ -1,4 +1,4 @@
-import {PhotoDescription} from './data.js';
+import {photos} from './data.js';
 
 const usersPictures = document.querySelector('.pictures');
 
@@ -6,7 +6,7 @@ const similarPictureTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 
-const similarPictures = PhotoDescription();
+const similarPictures = photos;
 
 const similarListFragment = document.createDocumentFragment();
 
