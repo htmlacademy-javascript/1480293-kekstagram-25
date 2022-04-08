@@ -4,7 +4,7 @@ import {renderFullPictures, clearFullPictures} from './big-picture.js';
 
 const userModalElement = document.querySelector('.img-upload__overlay');
 const userModalOpenElement = document.querySelector('#upload-file');
-const userModalCloseElement = document.querySelector('#picture-cancel');
+const userModalCloseElement = document.querySelector('#upload-cancel');
 
 
 const onPopupEscKeydown = (evt) => {
