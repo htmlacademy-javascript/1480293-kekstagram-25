@@ -18,7 +18,7 @@ const onPopupEscKeydown = (evt) => {
 function openUserModal () {
   userModalElement.classList.remove('hidden');
   document.querySelector('body').classList.add('modal-open');
-  renderFullPictures();
+  //renderFullPictures();
 
   document.addEventListener('keydown', onPopupEscKeydown);
 }
@@ -26,7 +26,7 @@ function openUserModal () {
 function closeUserModal () {
   userModalElement.classList.add('hidden');
   document.querySelector('body').classList.remove('modal-open');
-  clearFullPictures();
+  //clearFullPictures();
 
 
   document.removeEventListener('keydown', onPopupEscKeydown);
