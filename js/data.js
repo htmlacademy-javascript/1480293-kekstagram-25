@@ -47,7 +47,7 @@ const numberOfComments = 7;
 
 const createPhotoDescription = () => {
   return {
-    id: id+1,
+    id: id++,
     url: `photos/${id}.jpg`,
     description: description[getRandomtInclusive(0,description.length-1)],
     likes: getRandomtInclusive(15,200),
@@ -56,7 +56,7 @@ const createPhotoDescription = () => {
   };
 };
 
-const photoDescription = () => Array.from({length: 20}, createPhotoDescription);
+const photoDescription = () => Array.from({length: 25}, createPhotoDescription);
 
 const photos = photoDescription();
 export {photos};
