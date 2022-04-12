@@ -35,7 +35,7 @@ const name = [
 
 const createComments = () => {
   return {
-    id: id++,
+    id: getRandomtInclusive(1,5000),
     avatar: `img/avatar-${getRandomtInclusive(1,6)}.svg`,
     message: message[getRandomtInclusive(0,message.length-1)],
     name: name[getRandomtInclusive(0,name.length-1)],
