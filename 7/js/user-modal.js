@@ -9,7 +9,8 @@ const image = document.querySelector('.img-upload__preview img');
 
 
 const onPopupEscKeydown = (evt) => {
-  if (isEscapeKey(evt)) {
+  if (isEscapeKey(evt) && document.querySelector('.text__hashtags') !== document.activeElement && document.querySelector('.text__description') !== document.activeElement) {
+  /*if (isEscapeKey(evt)) {*/
     evt.preventDefault();
     closeUserModal();
   }
@@ -52,6 +53,7 @@ userModalCloseElement.addEventListener('click', (evt) => {
 });
 
 userModalCloseElement.addEventListener('keydown', (evt) => {
+  /*if (isEnterKey(evt) && document.querySelector('.text__hashtags') !== document.activeElement && document.querySelector('.text__description') !== document.activeElement) {*/
   if (isEnterKey(evt)) {
     closeUserModal();
   }
@@ -127,12 +129,12 @@ form.addEventListener('submit', (evt) => {
 
 });
 
-function testHashtags(re, str) {
+const testHashtags = function (re, str) {
   if (str.search(re) !== -1) {
     form.submit();
   }
-}
+};
 
-testHashtags(re, testString);
+/*testHashtags(re, testString);*/
 
 
