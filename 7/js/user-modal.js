@@ -118,7 +118,7 @@ form.addEventListener('submit', (evt) => {
   const testString  = document.querySelector('.text__hashtags').value;
   const re = /^#[A-Za-zА-Яа-яЁё0-9]{0,19}$/;
 
-  if (testString.search(re) != -1) {
+  if (testString.search(re) !== -1) {
     const isValid = pristine.validate();
     if (isValid) {
       form.submit();
@@ -128,7 +128,7 @@ form.addEventListener('submit', (evt) => {
 });
 
 function testHashtags(re, str) {
-  if (str.search(re) != -1) {
+  if (str.search(re) !== -1) {
     form.submit();
   }
 }
