@@ -174,18 +174,17 @@ formImg.addEventListener('change', (evt) => {
 });*/
 
 
-/*
-const filetrs {
-chrome: grayscale;
-sepia: sepia;
-marvin: invert
-phobos:blur
-heat:brightness
-};*/
+const filters = {
+chrome: 'grayscale',
+sepia: 'sepia',
+marvin: 'invert',
+phobos: 'blur',
+heat: 'brightness',
+};
 
-/*  if (evt.target.value == chrome || evt.target.value == sepia ) {
-      /*value = sliderElement.noUiSlider.get();
-      divImg.style.filter = `grayscale(${value})`;
+formImg.addEventListener('change', (evt) => {
+  if (evt.target.value == chrome || evt.target.value == sepia ) {
+
       range: {
         min: 0,
         max: 1,
@@ -193,12 +192,8 @@ heat:brightness
       start: 1,
       step: 0.1,
       connect: 'lower',
-    });
-    sliderElement.noUiSlider.on('update', () => {
-      value = sliderElement.noUiSlider.get();
-      divImg.style.filter = `grayscale(${value})`;
-    });
-} if (evt.target.value == marvin) {
+  }
+  if (evt.target.value == marvin) {
     sliderElement.noUiSlider.updateOptions({
       range: {
         min: 0,
@@ -207,7 +202,8 @@ heat:brightness
       start: 100,
       step: 1
     });
-  } if (evt.target.value == phobos) {
+  }
+  if (evt.target.value == phobos) {
     sliderElement.noUiSlider.updateOptions({
       range: {
         min: 0,
@@ -216,7 +212,8 @@ heat:brightness
       start: 3,
       step: 0.1
     });
-  } if (evt.target.value == heat) {
+  }
+  if (evt.target.value == heat) {
     sliderElement.noUiSlider.updateOptions({
       range: {
         min: 1,
@@ -227,7 +224,15 @@ heat:brightness
     });
   } else {
     sliderElement.setAttribute('disabled', true);
-  }*/
+    divImg.style.filter = null;
+
+  }
+});
+
+  sliderElement.noUiSlider.on('update', () => {
+    value = sliderElement.noUiSlider.get();
+    divImg.style.filter = `grayscale(${value})`;
+  });
 //Валидация
 /*
 const form = document.querySelector('#upload-select-image');
