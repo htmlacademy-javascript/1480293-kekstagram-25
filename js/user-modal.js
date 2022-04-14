@@ -173,7 +173,7 @@ formImg.addEventListener('change', (evt) => {
   }
 });*/
 
-
+/*
 const filters = {
 chrome: 'grayscale',
 sepia: 'sepia',
@@ -187,17 +187,17 @@ formImg.addEventListener('change', (evt) => {
 
       range: {
         min: 0,
-        max: 1,
+        max: 1
       },
       start: 1,
       step: 0.1,
-      connect: 'lower',
+      connect: 'lower'
   }
   if (evt.target.value == marvin) {
     sliderElement.noUiSlider.updateOptions({
       range: {
         min: 0,
-        max: 100,
+        max: 100
       },
       start: 100,
       step: 1
@@ -207,7 +207,7 @@ formImg.addEventListener('change', (evt) => {
     sliderElement.noUiSlider.updateOptions({
       range: {
         min: 0,
-        max: 3,
+        max: 3
       },
       start: 3,
       step: 0.1
@@ -217,7 +217,7 @@ formImg.addEventListener('change', (evt) => {
     sliderElement.noUiSlider.updateOptions({
       range: {
         min: 1,
-        max: 3,
+        max: 3
       },
       start: 3,
       step: 0.1
@@ -225,14 +225,13 @@ formImg.addEventListener('change', (evt) => {
   } else {
     sliderElement.setAttribute('disabled', true);
     divImg.style.filter = null;
-
   }
 });
 
   sliderElement.noUiSlider.on('update', () => {
     value = sliderElement.noUiSlider.get();
     divImg.style.filter = `grayscale(${value})`;
-  });
+  });*/
 //Валидация
 /*
 const form = document.querySelector('#upload-select-image');
