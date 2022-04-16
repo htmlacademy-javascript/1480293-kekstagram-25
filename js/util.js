@@ -8,7 +8,15 @@ const getRandomtInclusive = (min, max) => {
   }
 };
 
-export {getRandomtInclusive};
+const isEscapeKey = (evt) => {
+  return evt.key === 'Escape';
+};
+
+const isEnterKey = (evt) => {
+  return evt.key === 'Enter';
+};
+
+export {getRandomtInclusive, isEscapeKey, isEnterKey};
 
 
 /*const getMaxLengthStr = function (str, maxlength) {
