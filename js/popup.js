@@ -1,4 +1,4 @@
-import {photos} from './data.js';
+//import {photos} from './data.js';
 
 const usersPictures = document.querySelector('.pictures');
 
@@ -6,7 +6,8 @@ const similarPictureTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 
-const similarPictures = photos;
+//const similarPictures = photos;
+const renderSimilarSmallPictures = (similarPictures) => {
 
 const similarListFragment = document.createDocumentFragment();
 
@@ -20,6 +21,6 @@ similarPictures.forEach(({url, likes, comments}) => {
   similarListFragment.appendChild(pictureElement);
 });
 
-usersPictures.appendChild(similarListFragment);
-
-export {usersPictures};
+  usersPictures.appendChild(similarListFragment);
+};
+export {renderSimilarSmallPictures};

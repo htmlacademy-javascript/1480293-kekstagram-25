@@ -1,5 +1,5 @@
 import {isEscapeKey, isEnterKey} from './util.js';
-//import {usersPictures} from './popup.js';
+//import {renderSimilarPictures} from './popup.js';
 import {renderFullPictures, clearFullPictures} from './big-picture.js';
 
 const userModalElement = document.querySelector('.img-upload__overlay');
@@ -35,11 +35,6 @@ function closeUserModal () {
 userModalOpenElement.addEventListener('change', function(evt) {
   evt.preventDefault();
   image.src = URL.createObjectURL(userModalOpenElement.files[0]);
-
-  /*effectsPreview.style.background-image = url('URL.createObjectURL(userModalOpenElement.files[0])');*/
-  /*effectsPreview.style.transform = 'scale(scaleValueImg)';
-
-  blob:http://localhost:3000/467be109-85bd-4c63-94b9-14af87102802*/
   openUserModal();
 });
 
