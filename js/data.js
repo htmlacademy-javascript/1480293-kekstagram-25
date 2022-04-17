@@ -42,7 +42,7 @@ const createComments = () => {
   };
 };
 
-const numberOfComments = 7;
+const numberOfComments = 25;
 
 
 const createPhotoDescription = () => {
@@ -53,8 +53,10 @@ const createPhotoDescription = () => {
     likes: getRandomtInclusive(15,200),
     comments: Array.from({length: numberOfComments}, createComments),
 
+
   };
 };
+console.log(createPhotoDescription);
 
 const photoDescription = () => Array.from({length: 25}, createPhotoDescription);
 
