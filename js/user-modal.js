@@ -1,5 +1,5 @@
 import {isEscapeKey, isEnterKey} from './util.js';
-//import {usersPictures} from './popup.js';
+//import {renderSimilarPictures} from './popup.js';
 import {renderFullPictures, clearFullPictures} from './big-picture.js';
 
 const userModalElement = document.querySelector('.img-upload__overlay');
@@ -26,7 +26,7 @@ function openUserModal () {
 
 function closeUserModal () {
   userModalElement.classList.add('hidden');
-  userModalOpenElement.files[0] = [];
+  /*userModalOpenElement.files[0] = [];*/
   document.querySelector('body').classList.remove('modal-open');
   document.removeEventListener('keydown', onPopupEscKeydown);
 }
@@ -35,11 +35,6 @@ function closeUserModal () {
 userModalOpenElement.addEventListener('change', function(evt) {
   evt.preventDefault();
   image.src = URL.createObjectURL(userModalOpenElement.files[0]);
-
-  /*effectsPreview.style.background-image = url('URL.createObjectURL(userModalOpenElement.files[0])');*/
-  /*effectsPreview.style.transform = 'scale(scaleValueImg)';
-
-  blob:http://localhost:3000/467be109-85bd-4c63-94b9-14af87102802*/
   openUserModal();
 });
 
@@ -149,7 +144,7 @@ formImg.addEventListener('change', onFilterChange);
 // Фильтр «Хром»
 
 const sliderElement = document.querySelector('.effect-level__slider');
-//*const valueElement = document.querySelector('.effect-level__value');*/
+const valueElement = document.querySelector('.effect-level__value');
 /*console.log(document.querySelector('.effect-level__value').value);*/
 
 noUiSlider.create(sliderElement, {
@@ -160,31 +155,114 @@ noUiSlider.create(sliderElement, {
   start: 1,
   step: 0.1,
   connect: 'lower',
+  format: {
+    to: function (value) {
+      if (Number.isInteger(value)) {
+        return value.toFixed(0);
+      }
+      return value.toFixed(1);
+    },
+    from: function (value) {
+      return parseFloat(value);
+    },
+  },
 });
 
-sliderElement.noUiSlider.on('update', () => {
-  document.querySelector('.effect-level__value').value = sliderElement.noUiSlider.get();
-  console.log(document.querySelector('.effect-level__value').value);
-});
-
+const filters = {
+  chrome: 'grayscale',
+  sepia: 'sepia',
+  marvin: 'invert',
+  phobos: 'blur',
+  heat: 'brightness',
+};
 /*
 formImg.addEventListener('change', (evt) => {
-  if (evt.target.matches('.effects__radio')) {
-  }
+  if (evt.target.value === 'none') {
+    sliderElement.setAttribute('disabled', true);
+    sliderElement.noUiSlider.destroy();
+  } if (evt.target.value !== `none`)
+
+  {
+    sliderElement.removeAttribute('disabled');
+    noUiSlider.create(sliderElement, {
+      range: {
+        min: 0,
+        max: 1,
+      },
+      start: 1,
+      step: 0.1,
+      connect: 'lower',
+    });
+    sliderElement.noUiSlider.on('update', () => {
+      valueElement.value = sliderElement.noUiSlider.get();
+      /*console.log(valueElement.value);
+      return valueElement.value;*/
+      /*divImg.style.filter = `grayscale(${valueElement.value})`;*/
+  /*  });
+
+    if (evt.target.value === `chrome` || evt.target.value === `sepia`) {
+      sliderElement.removeAttribute('disabled');
+      sliderElement.noUiSlider.updateOptions({
+        range: {
+          min: 0,
+          max: 1
+        },
+        start: 1,
+        step: 0.1,
+        connect: 'lower'
+      });
+    }
+    if (evt.target.value === `marvin`) {
+      sliderElement.removeAttribute('disabled');
+      sliderElement.noUiSlider.updateOptions({
+        range: {
+          min: 0,
+          max: 100
+        },
+        start: 100,
+        step: 1
+      });
+      divImg.style.filter = `invert(${valueElement.value})`;
+    }
+    if (evt.target.value === `phobos`) {
+      sliderElement.removeAttribute('disabled');
+      sliderElement.noUiSlider.updateOptions({
+        range: {
+          min: 0,
+          max: 3
+        },
+        start: 3,
+        step: 0.1
+      });
+    }
+    if (evt.target.value === `heat`) {
+      sliderElement.removeAttribute('disabled');
+      sliderElement.noUiSlider.updateOptions({
+        range: {
+          min: 1,
+          max: 3
+        },
+        start: 3,
+        step: 0.1
+      }); console.log(evt.target.value);
+    }
+  } console.log(evt.target.value);
+  console.log(`filters.${evt.target.value}`);
+  console.log(valueElement.value);
 });*/
 
-/*
-const filters = {
-chrome: 'grayscale',
-sepia: 'sepia',
-marvin: 'invert',
-phobos: 'blur',
-heat: 'brightness',
-};
 
 formImg.addEventListener('change', (evt) => {
-  if (evt.target.value == chrome || evt.target.value == sepia ) {
+  sliderElement.noUiSlider.on('update', () => {
+    valueElement.value = sliderElement.noUiSlider.get();
+    console.log(valueElement.value);
+    return valueElement.value;
+    /*divImg.style.filter = `grayscale(${valueElement.value})`;*/
+  });
 
+  if (evt.target.value === `chrome` || evt.target.value == `sepia`) {
+    sliderElement.removeAttribute('disabled');
+    sliderElement.noUiSlider.updateOptions({
       range: {
         min: 0,
         max: 1
@@ -192,8 +270,10 @@ formImg.addEventListener('change', (evt) => {
       start: 1,
       step: 0.1,
       connect: 'lower'
+    });
   }
-  if (evt.target.value == marvin) {
+  if (evt.target.value === `marvin`) {
+    sliderElement.removeAttribute('disabled');
     sliderElement.noUiSlider.updateOptions({
       range: {
         min: 0,
@@ -202,8 +282,10 @@ formImg.addEventListener('change', (evt) => {
       start: 100,
       step: 1
     });
+    divImg.style.filter = `invert(${valueElement.value})`;
   }
-  if (evt.target.value == phobos) {
+  if (evt.target.value === `phobos`) {
+    sliderElement.removeAttribute('disabled');
     sliderElement.noUiSlider.updateOptions({
       range: {
         min: 0,
@@ -213,7 +295,8 @@ formImg.addEventListener('change', (evt) => {
       step: 0.1
     });
   }
-  if (evt.target.value == heat) {
+  if (evt.target.value === `heat`) {
+    sliderElement.removeAttribute('disabled');
     sliderElement.noUiSlider.updateOptions({
       range: {
         min: 1,
@@ -221,19 +304,27 @@ formImg.addEventListener('change', (evt) => {
       },
       start: 3,
       step: 0.1
-    });
-  } else {
-    sliderElement.setAttribute('disabled', true);
-    divImg.style.filter = null;
-  }
+    });/*
+  } if (evt.target.value === `none`) {
+    /*sliderElement.setAttribute('disabled', true);*/
+    /*sliderElement.noUiSlider.destroy();*/
+
+  } console.log(`filters.${evt.target.value}`);
+  console.log(valueElement.value);
 });
 
-  sliderElement.noUiSlider.on('update', () => {
-    value = sliderElement.noUiSlider.get();
-    divImg.style.filter = `grayscale(${value})`;
-  });*/
-//Валидация
+
+
 /*
+sliderElement.noUiSlider.on('update', () => {
+  valueElement.value = sliderElement.noUiSlider.get();
+
+  /*console.log(filters.evt.target.value);*/
+/*});*/
+
+
+//Валидация
+
 const form = document.querySelector('#upload-select-image');
 
 
@@ -244,13 +335,8 @@ const pristine = new Pristine(form, {
 });
 
 form.addEventListener('submit', (evt) => {
-  evt.preventDefault();*/
+  evt.preventDefault();
 
-  /*const isValid = pristine.validate();
-  if (isValid) {
-    form.submit();
-  }*/
-/*
   const testString  = document.querySelector('.text__hashtags').value;
   const re = /^#[A-Za-zА-Яа-яЁё0-9]{0,19}$/;
 
@@ -263,11 +349,11 @@ form.addEventListener('submit', (evt) => {
 
 });
 
-const testHashtags = function (re, str) {
+/*const testHashtags = function (re, str) {
   if (str.search(re) !== -1) {
     form.submit();
   }
 };
 
-testHashtags(re, testString);
-*/
+testHashtags(re, testString);*/
+
