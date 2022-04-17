@@ -22,7 +22,7 @@ const sendData = (onSuccess, onFail, body) => {
     {
       method: 'POST',
       body,
-    },
+  },
   )
     .then((response) => {
       if (response.ok) {
